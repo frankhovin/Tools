@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Selenium;
 using ChromeMultipleLogins.Properties;
@@ -46,7 +39,7 @@ namespace ChromeMultipleLogins {
 
             for (int i = 0; i < userPanel.RowCount; i++) {
                 userPanel.Controls.Add(new Label() { Text = "Login"});
-                userPanel.Controls.Add(new TextBox());// { Width=50});
+                userPanel.Controls.Add(new TextBox());
                 userPanel.Controls.Add(new TextBox());
             }
 
