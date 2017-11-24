@@ -11,13 +11,13 @@ namespace ChromeMultipleLogins {
         string website;
         ArrayList instances;
 
-        private void websiteTextbox_TextChanged(object sender, EventArgs e) {
+        /*private void websiteTextbox_TextChanged(object sender, EventArgs e) {
 
         }
 
         private void MainForm_Load(object sender, EventArgs e) {
 
-        }
+        }*/
 
         private void addRowButton_Click(object sender, EventArgs e) {
             userPanel.RowCount = userPanel.RowCount + 1;
@@ -43,6 +43,14 @@ namespace ChromeMultipleLogins {
                 userPanel.Controls.Add(new TextBox());
             }
 
+            PopulateForm();
+        }
+
+        /**
+         * Populate form with default values.
+         */
+        private void PopulateForm () {
+            websiteTextbox.Text = application.Default.urlhistory;   // Load the value from the application.settings file.
         }
 
         /**
@@ -71,11 +79,6 @@ namespace ChromeMultipleLogins {
          *  Kill all the Chrome processes.
          */
         private void killButton_Click(object sender, EventArgs e) {
-            /*if (instances != null) {
-                foreach (GCDriver instance in instances) {
-                    instance.Close();
-                }
-            }*/
             killChromeProcesses();
         }
 
@@ -94,12 +97,21 @@ namespace ChromeMultipleLogins {
             base.OnFormClosing(e);
             if (PreClosingConfirmation() == System.Windows.Forms.DialogResult.Yes) {
                 killChromeProcesses();
+
                 Dispose(true);
                 Application.Exit();
             }
             else {
                 e.Cancel = true;
             }
+        }
+
+        /**
+         * Save the data in the text fields to the application.settings file.
+         */
+        private void SaveEntries () {
+            application.Default.urlhistory = websiteTextbox.Text;
+            application.Default.Save();
         }
 
         /**
@@ -111,7 +123,5 @@ namespace ChromeMultipleLogins {
                 "Quit Chrome Multiple Logins", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             return res;
         }
-
-
     }
 }
