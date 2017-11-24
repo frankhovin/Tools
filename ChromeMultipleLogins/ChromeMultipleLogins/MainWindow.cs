@@ -71,6 +71,15 @@ namespace ChromeMultipleLogins {
          *  Kill all the Chrome processes.
          */
         private void killButton_Click(object sender, EventArgs e) {
+            /*if (instances != null) {
+                foreach (GCDriver instance in instances) {
+                    instance.Close();
+                }
+            }*/
+            killChromeProcesses();
+        }
+
+        private void killChromeProcesses () {
             if (instances != null) {
                 foreach (GCDriver instance in instances) {
                     instance.Close();
@@ -78,12 +87,31 @@ namespace ChromeMultipleLogins {
             }
         }
 
-        private void OnApplicationExit (object sender, EventArgs e) {
-            if (instances != null) {
-                foreach (GCDriver instance in instances) {
-                    instance.Close();
-                }
+        /**
+         * Handler for performing actions when the application quits.
+         */
+        protected override void OnFormClosing(FormClosingEventArgs e) {
+            base.OnFormClosing(e);
+            if (PreClosingConfirmation() == System.Windows.Forms.DialogResult.Yes) {
+                killChromeProcesses();
+                Dispose(true);
+                Application.Exit();
+            }
+            else {
+                e.Cancel = true;
             }
         }
+
+        /**
+         * Quit confirmation dialog.
+         */
+        private DialogResult PreClosingConfirmation () {
+            DialogResult res = System.Windows.Forms.MessageBox.Show(
+                "Do you want to quit?",
+                "Quit Chrome Multiple Logins", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            return res;
+        }
+
+
     }
 }

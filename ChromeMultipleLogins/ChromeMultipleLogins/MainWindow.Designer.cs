@@ -25,11 +25,11 @@
         private void InitializeComponent() {
             this.websiteLabel = new System.Windows.Forms.Label();
             this.openChromeButton = new System.Windows.Forms.Button();
-            this.websiteTextbox = new System.Windows.Forms.TextBox();
             this.killButton = new System.Windows.Forms.Button();
             this.userPanel = new System.Windows.Forms.TableLayoutPanel();
             this.removeRowButton = new System.Windows.Forms.Button();
             this.addRowButton = new System.Windows.Forms.Button();
+            this.websiteTextbox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // websiteLabel
@@ -50,13 +50,6 @@
             this.openChromeButton.Text = "Open Chrome";
             this.openChromeButton.UseVisualStyleBackColor = true;
             this.openChromeButton.Click += new System.EventHandler(this.OpenChromeButton_Click);
-            // 
-            // websiteTextbox
-            // 
-            this.websiteTextbox.Location = new System.Drawing.Point(82, 15);
-            this.websiteTextbox.Name = "websiteTextbox";
-            this.websiteTextbox.Size = new System.Drawing.Size(295, 22);
-            this.websiteTextbox.TabIndex = 13;
             // 
             // killButton
             // 
@@ -106,17 +99,24 @@
             this.addRowButton.UseVisualStyleBackColor = true;
             this.addRowButton.Click += new System.EventHandler(this.addRowButton_Click);
             // 
+            // websiteTextbox
+            // 
+            this.websiteTextbox.Location = new System.Drawing.Point(82, 16);
+            this.websiteTextbox.Name = "websiteTextbox";
+            this.websiteTextbox.Size = new System.Drawing.Size(294, 22);
+            this.websiteTextbox.TabIndex = 18;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(406, 292);
+            this.Controls.Add(this.websiteTextbox);
             this.Controls.Add(this.addRowButton);
             this.Controls.Add(this.removeRowButton);
             this.Controls.Add(this.userPanel);
             this.Controls.Add(this.killButton);
-            this.Controls.Add(this.websiteTextbox);
             this.Controls.Add(this.openChromeButton);
             this.Controls.Add(this.websiteLabel);
             this.Name = "MainForm";
@@ -131,11 +131,11 @@
 
         private System.Windows.Forms.Label websiteLabel;
         private System.Windows.Forms.Button openChromeButton;
-        private System.Windows.Forms.TextBox websiteTextbox;
         private System.Windows.Forms.Button killButton;
         private System.Windows.Forms.TableLayoutPanel userPanel;
         private System.Windows.Forms.Button removeRowButton;
         private System.Windows.Forms.Button addRowButton;
+        private System.Windows.Forms.TextBox websiteTextbox;
     }
 }
 
