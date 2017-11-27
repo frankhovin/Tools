@@ -97,7 +97,7 @@ namespace ChromeMultipleLogins {
             base.OnFormClosing(e);
             if (PreClosingConfirmation() == System.Windows.Forms.DialogResult.Yes) {
                 killChromeProcesses();
-
+                SaveEntries();
                 Dispose(true);
                 Application.Exit();
             }
