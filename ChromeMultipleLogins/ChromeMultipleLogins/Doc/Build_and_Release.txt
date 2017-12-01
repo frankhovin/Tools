@@ -1,0 +1,2 @@
+﻿Install field location after build:
+D:\Source\Repos\Tools\ChromeMultipleLogins\Setup\Setup\Express\SingleImage\DiskImages\DISK1
