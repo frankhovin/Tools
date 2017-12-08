@@ -103,7 +103,7 @@
             //
             this.websiteTextbox.Location = new System.Drawing.Point(82, 16);
             this.websiteTextbox.Name = "websiteTextbox";
-            this.websiteTextbox.Size = new System.Drawing.Size(294, 22);
+            this.websiteTextbox.Size = new System.Drawing.Size(394, 22);
             this.websiteTextbox.TabIndex = 18;
             //
             // MainForm
@@ -111,7 +111,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(406, 292);
+            this.ClientSize = new System.Drawing.Size(516, 292);
             this.Controls.Add(this.websiteTextbox);
             this.Controls.Add(this.addRowButton);
             this.Controls.Add(this.removeRowButton);

@@ -11,38 +11,26 @@ namespace ChromeMultipleLogins {
         string website;
         ArrayList instances;
 
-        /*private void websiteTextbox_TextChanged(object sender, EventArgs e) {
-
-        }
-
-        private void MainForm_Load(object sender, EventArgs e) {
-
-        }*/
-
         private void addRowButton_Click(object sender, EventArgs e) {
             userPanel.RowCount = userPanel.RowCount + 1;
             userPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            userPanel.Controls.Add(new Label() { Text = "Login" });
-            userPanel.Controls.Add(new TextBox());
-            userPanel.Controls.Add(new TextBox());
+            AddRows(1);
         }
 
         private void removeRowButton_Click(object sender, EventArgs e) {
-            //userPanel.RowCount = userPanel.RowCount - 1;
-            // Need to redraw the table.
-            //this.Refresh();
+        }
 
+        public void AddRows (int number) {
+            for (int i = 0; i < number; i++) {
+                userPanel.Controls.Add(new Label() { Text = "Login" });
+                userPanel.Controls.Add(new TextBox());
+                userPanel.Controls.Add(new TextBox());
+            }
         }
 
         public MainForm() {
             InitializeComponent();
-
-            for (int i = 0; i < userPanel.RowCount; i++) {
-                userPanel.Controls.Add(new Label() { Text = "Login"});
-                userPanel.Controls.Add(new TextBox());
-                userPanel.Controls.Add(new TextBox());
-            }
-
+            AddRows(3);
             PopulateForm();
         }
 
