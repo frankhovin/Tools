@@ -21,10 +21,19 @@ namespace ChromeMultipleLogins {
 
         private void addRowButton_Click(object sender, EventArgs e) {
             userPanel.RowCount = userPanel.RowCount + 1;
-            userPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            userPanel.Controls.Add(new Label() { Text = "Login" });
-            userPanel.Controls.Add(new TextBox());
-            userPanel.Controls.Add(new TextBox());
+
+            // Add a new row, up to 6 total:
+            if (userPanel.RowCount < 7) {
+                userPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+                userPanel.Controls.Add(new Label() { Text = "Login" });
+                userPanel.Controls.Add(new TextBox());
+                userPanel.Controls.Add(new TextBox());
+            }
+
+            // If the number of rows reaches 6, disable the button:
+            if (userPanel.RowCount > 5) {
+                addRowButton.Enabled = false;
+            }
         }
 
         private void removeRowButton_Click(object sender, EventArgs e) {

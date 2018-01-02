@@ -131,7 +131,8 @@
         private System.Windows.Forms.Label websiteLabel;
         private System.Windows.Forms.Button openChromeButton;
         private System.Windows.Forms.Button killButton;
-        private System.Windows.Forms.TableLayoutPanel userPanel;
+        private System.Windows.Forms.TableLayoutPanel 
+            userPanel;
         private System.Windows.Forms.Button removeRowButton;
         private System.Windows.Forms.Button addRowButton;
         private System.Windows.Forms.TextBox websiteTextbox;
