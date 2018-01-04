@@ -45,5 +45,16 @@ namespace ChromeMultipleLogins {
                 this["usernames"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public int rowcount {
+            get {
+                return ((int)(this["rowcount"]));
+            }
+            set {
+                this["rowcount"] = value;
+            }
+        }
     }
 }

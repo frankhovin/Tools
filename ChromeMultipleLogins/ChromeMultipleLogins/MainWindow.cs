@@ -21,6 +21,7 @@ namespace ChromeMultipleLogins {
 
         private void addRowButton_Click(object sender, EventArgs e) {
             userPanel.RowCount = userPanel.RowCount + 1;
+            application.Default.rowcount++;
 
             // Add a new row, up to 6 total:
             if (userPanel.RowCount < 7) {
@@ -35,40 +36,30 @@ namespace ChromeMultipleLogins {
                 addRowButton.Enabled = false;
             }
 
-            //toolStripStatusLabel.Text = userPanel.RowCount.ToString();
-            //toolStripStatusLabel.Text = userPanel.Controls.Count.ToString();
-            //toolStripStatusLabel.Text = userPanel.GetType().ToString();
-            //toolStripStatusLabel.Text = userPanel.GetControlFromPosition(2, 0).Text;
+            // For troubleshooting: Show the saved usernames/passwords (from the last startup) and the new number of rows:
+            toolStripStatusLabel.Text = "u/p count: " + application.Default.usernames.Count.ToString() + ", " +
+                                        "rows: " + application.Default.rowcount;
         }
 
         private void removeRowButton_Click(object sender, EventArgs e) {
             //userPanel.RowCount = userPanel.RowCount - 1;
             // Need to redraw the table.
             //this.Refresh();
-
         }
 
         public MainForm() {
             InitializeComponent();
 
-            // This works; The string is added to application.Default.usernames.Add.
-            // However, it's not saved to the settings (the application.Default.Save in OnFormClosing->SaveEntries).
-            // (Tested by removing the .Add( line - if it's saved, it should be there on the next run when the .Add is not run.
-
-            //application.Default.usernames = new System.Collections.Specialized.StringCollection();
-            //application.Default.usernames.Add("First user 4");
-            //application.Default.usernames.Clear();
-
-            toolStripStatusLabel.Text = application.Default.usernames.Count.ToString();
-            toolStripStatusLabel.Text = userPanel.RowCount.ToString();
-            //toolStripStatusLabel.Text = application.Default.usernames[0];
-
-            // Create the initial rows of username/password:
-            for (int i = 0; i < userPanel.RowCount; i++) {
+            // Get the row count from the application.settings file and create the saved number of rows:
+            for (int i = 0; i < application.Default.rowcount; i++) {
                 userPanel.Controls.Add(new Label() { Text = "Login"});
-                userPanel.Controls.Add(new TextBox() /*{ Text = application.Default.username1 }*/);
-                userPanel.Controls.Add(new TextBox() /*{ Text = application.Default.password1 }*/);
+                userPanel.Controls.Add(new TextBox());
+                userPanel.Controls.Add(new TextBox());
             }
+
+            // For troubleshooting: Show the saved usernames/passwords and the saved number of rows on startup:
+            toolStripStatusLabel.Text = "u/p count: " + application.Default.usernames.Count.ToString() + ", " +
+                                        "rows: " + application.Default.rowcount;
 
             PopulateForm();
 
@@ -83,25 +74,14 @@ namespace ChromeMultipleLogins {
             websiteTextbox.Text = application.Default.urlhistory;
             // Load the username and password values from the application.settings file:
             int y = 0;
-            for (int i = 0; i < application.Default.usernames.Count / 2; i++) {
-                userPanel.GetControlFromPosition(1, i).Text = application.Default.usernames[y];
-                y++;
-                userPanel.GetControlFromPosition(2, i).Text = application.Default.usernames[y];
-                y++;
-            }
-
-            toolStripStatusLabel.Text = application.Default.usernames.Count.ToString();
-
-            /*try {
-                toolStripStatusLabel.Text = toolStripStatusLabel.Text + " " +
-                                            application.Default.usernames[0] + " " +
-                                            application.Default.usernames[1] + " " +
-                                            application.Default.usernames[2] + " " +
-                                            application.Default.usernames[3] + " " +
-                                            application.Default.usernames[4] + " " +
-                                            application.Default.usernames[5];
-            }
-            catch (ArgumentOutOfRangeException) { }*/
+            try {
+                for (int i = 0; i < application.Default.usernames.Count / 2; i++) {
+                    userPanel.GetControlFromPosition(1, i).Text = application.Default.usernames[y];
+                    y++;
+                    userPanel.GetControlFromPosition(2, i).Text = application.Default.usernames[y];
+                    y++;
+                }
+            } catch (NullReferenceException) { }
         }
 
         /**
@@ -165,11 +145,13 @@ namespace ChromeMultipleLogins {
             // Clear the existing collection of usernames/passwords:
             application.Default.usernames.Clear();
 
-            // Save the first 3 rows of username/password (INCLUDING blank entries):
-            for (int i = 0; i < 3; i++) {
-                application.Default.usernames.Add(userPanel.GetControlFromPosition(1, i).Text);
-                application.Default.usernames.Add(userPanel.GetControlFromPosition(2, i).Text);
-            }
+            // Save the contents of the username/password rows (including blank entries):
+            try {
+                for (int i = 0; i < application.Default.rowcount; i++) {
+                    application.Default.usernames.Add(userPanel.GetControlFromPosition(1, i).Text);
+                    application.Default.usernames.Add(userPanel.GetControlFromPosition(2, i).Text);
+                }
+            } catch (NullReferenceException) { }
 
             application.Default.Save();
         }
