@@ -34,5 +34,16 @@ namespace ChromeMultipleLogins {
                 this["urlhistory"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection usernames {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["usernames"]));
+            }
+            set {
+                this["usernames"] = value;
+            }
+        }
     }
 }
