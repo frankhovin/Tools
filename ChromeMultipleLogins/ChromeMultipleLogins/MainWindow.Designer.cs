@@ -73,7 +73,7 @@
             this.userPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.userPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.userPanel.Location = new System.Drawing.Point(9, 153);
-            this.userPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.userPanel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 35);
             this.userPanel.Name = "userPanel";
             this.userPanel.RowCount = 3;
             this.userPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -116,9 +116,9 @@
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel,
             this.toolStripStatusLabel1});
-            this.statusStrip.Location = new System.Drawing.Point(0, 268);
+            this.statusStrip.Location = new System.Drawing.Point(0, 270);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(406, 24);
+            this.statusStrip.Size = new System.Drawing.Size(406, 22);
             this.statusStrip.TabIndex = 19;
             this.statusStrip.Text = "statusStrip";
             // 
