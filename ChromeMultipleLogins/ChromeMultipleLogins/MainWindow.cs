@@ -1,4 +1,7 @@
-﻿using System;
+﻿/**
+ *  Created by Frank Høvin.
+ */
+using System;
 using System.Windows.Forms;
 using Selenium;
 using ChromeMultipleLogins.Properties;
