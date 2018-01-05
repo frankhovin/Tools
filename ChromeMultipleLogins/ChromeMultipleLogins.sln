@@ -12,6 +12,7 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 		DefaultBuild|Any CPU = DefaultBuild|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Work|Any CPU = Work|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{EDA03C90-0002-40E9-B5CF-6EA768640461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -21,6 +22,8 @@ Global
 		{EDA03C90-0002-40E9-B5CF-6EA768640461}.DefaultBuild|Any CPU.Build.0 = Debug|Any CPU
 		{EDA03C90-0002-40E9-B5CF-6EA768640461}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDA03C90-0002-40E9-B5CF-6EA768640461}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDA03C90-0002-40E9-B5CF-6EA768640461}.Work|Any CPU.ActiveCfg = Work|Any CPU
+		{EDA03C90-0002-40E9-B5CF-6EA768640461}.Work|Any CPU.Build.0 = Work|Any CPU
 		{A9228C76-1BBC-4D12-A92D-DAAD8CFD8C19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A9228C76-1BBC-4D12-A92D-DAAD8CFD8C19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9228C76-1BBC-4D12-A92D-DAAD8CFD8C19}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -28,6 +31,8 @@ Global
 		{A9228C76-1BBC-4D12-A92D-DAAD8CFD8C19}.DefaultBuild|Any CPU.Build.0 = Debug|Any CPU
 		{A9228C76-1BBC-4D12-A92D-DAAD8CFD8C19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9228C76-1BBC-4D12-A92D-DAAD8CFD8C19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9228C76-1BBC-4D12-A92D-DAAD8CFD8C19}.Work|Any CPU.ActiveCfg = Work|Any CPU
+		{A9228C76-1BBC-4D12-A92D-DAAD8CFD8C19}.Work|Any CPU.Build.0 = Work|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -50,7 +50,7 @@ namespace ChromeMultipleLogins {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public int rowcount {
             get {
-                return ((int)(this["rowcount"]));
+                    return ((int)(this["rowcount"]));
             }
             set {
                 this["rowcount"] = value;
