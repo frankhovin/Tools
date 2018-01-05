@@ -1,5 +1,8 @@
 ﻿/**
  *  Created by Frank Høvin.
+ *
+ *  Fucked solution. In Debug, it complains about NullReferenceException every time
+ *  application.settings.Default.usernames is accessed. In Release, it works like before.
  */
 using System;
 using System.Windows.Forms;
