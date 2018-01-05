@@ -14,11 +14,11 @@ namespace ChromeMultipleLogins {
         string website;
         ArrayList instances;
 
-        /*private void websiteTextbox_TextChanged (object sender, EventArgs e) {
+        /*private void websiteTextbox_TextChanged(object sender, EventArgs e) {
 
         }
 
-        private void MainForm_Load (object sender, EventArgs e) {
+        private void MainForm_Load(object sender, EventArgs e) {
 
         }*/
 
@@ -40,20 +40,14 @@ namespace ChromeMultipleLogins {
             }
 
             // For troubleshooting: Show the saved usernames/passwords (from the last startup) and the new number of rows:
-            ShowRowsAndEntries();
+            toolStripStatusLabel.Text = "u/p count: " + application.Default.usernames.Count.ToString() + ", " +
+                                        "rows: " + application.Default.rowcount;
         }
 
         private void removeRowButton_Click(object sender, EventArgs e) {
-            // Remove the last row (the 3 last controls - Label, TextBox, TextBox):
-            userPanel.Controls.RemoveAt(application.Default.rowcount * 3 - 1);
-            userPanel.Controls.RemoveAt(application.Default.rowcount * 3 - 2);
-            userPanel.Controls.RemoveAt(application.Default.rowcount * 3 - 3);
-
-            // Update the row count in the settings:
-            application.Default.rowcount--;
-
-            // For troubleshooting: Show the saved usernames/passwords (from the last startup) and the new number of rows:
-            ShowRowsAndEntries();
+            //userPanel.RowCount = userPanel.RowCount - 1;
+            // Need to redraw the table.
+            //this.Refresh();
         }
 
         public MainForm() {
@@ -71,6 +65,8 @@ namespace ChromeMultipleLogins {
                                         "rows: " + application.Default.rowcount;
 
             PopulateForm();
+
+
         }
 
         /**
@@ -171,16 +167,6 @@ namespace ChromeMultipleLogins {
                 "Do you want to quit?",
                 "Quit Chrome Multiple Logins", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             return res;
-        }
-
-        /**
-         *  For troubleshooting:
-         *  Show the number of saved user/pass entries and row count
-         *  (from the application.settings file).
-         */
-        private void ShowRowsAndEntries () {
-            toolStripStatusLabel.Text = "u/p count: " + application.Default.usernames.Count.ToString() + ", " +
-                                        "rows: " + application.Default.rowcount;
         }
     }
 }
