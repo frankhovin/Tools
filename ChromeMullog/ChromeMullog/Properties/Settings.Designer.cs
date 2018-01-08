@@ -8,16 +8,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ChromeMultipleLogins {
+namespace ChromeMullog.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
-    internal sealed partial class application : global::System.Configuration.ApplicationSettingsBase {
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
-        private static application defaultInstance = ((application)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new application())));
+        private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
         
-        public static application Default {
+        public static Settings Default {
             get {
                 return defaultInstance;
             }
@@ -26,34 +26,35 @@ namespace ChromeMultipleLogins {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string urlhistory {
+        public string lasturl {
             get {
-                return ((string)(this["urlhistory"]));
+                return ((string)(this["lasturl"]));
             }
             set {
-                this["urlhistory"] = value;
+                this["lasturl"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Collections.Specialized.StringCollection usernames {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["usernames"]));
-            }
-            set {
-                this["usernames"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
         public int rowcount {
             get {
-                    return ((int)(this["rowcount"]));
+                return ((int)(this["rowcount"]));
             }
             set {
                 this["rowcount"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Collections.Specialized.StringCollection users {
+            get {
+                return ((global::System.Collections.Specialized.StringCollection)(this["users"]));
+            }
+            set {
+                this["users"] = value;
             }
         }
     }
