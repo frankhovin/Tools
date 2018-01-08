@@ -63,8 +63,9 @@ namespace ChromeMultipleLogins {
             InitializeComponent();
 
             // Get the row count from the application.settings file and create the saved number of rows:
+
             for (int i = 0; i < application.Default.rowcount; i++) {
-                userPanel.Controls.Add(new Label() { Text = "Login"});
+                userPanel.Controls.Add(new Label() { Text = "Login" });
                 userPanel.Controls.Add(new TextBox());
                 userPanel.Controls.Add(new TextBox());
             }
@@ -156,12 +157,10 @@ namespace ChromeMultipleLogins {
             application.Default.usernames.Clear();
 
             // Save the contents of the username/password rows (including blank entries):
-            try {
-                for (int i = 0; i < application.Default.rowcount; i++) {
-                    application.Default.usernames.Add(userPanel.GetControlFromPosition(1, i).Text);
-                    application.Default.usernames.Add(userPanel.GetControlFromPosition(2, i).Text);
-                }
-            } catch (NullReferenceException) { }
+            for (int i = 0; i < application.Default.rowcount; i++) {
+                application.Default.usernames.Add(userPanel.GetControlFromPosition(1, i).Text);
+                application.Default.usernames.Add(userPanel.GetControlFromPosition(2, i).Text);
+            }
 
             application.Default.Save();
         }

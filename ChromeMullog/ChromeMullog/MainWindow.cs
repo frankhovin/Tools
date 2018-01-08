@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Windows.Forms;
-//using Selenium;
-//using ChromeMultipleLogins.Properties;
-//using WindowsOperations.Authentication;
-using System.Diagnostics;
 using System.Collections;
+using ChromeMullog.Selenium;
+using WindowsOperations.Authentication;
 
 namespace ChromeMullog {
     public partial class MainForm : Form {
+        string      website;
+        ArrayList   instances;
+
         public MainForm() {
             InitializeComponent();
 
@@ -20,11 +21,8 @@ namespace ChromeMullog {
                 userPanel.Controls.Add(new TextBox());
             }
 
-            //toolStripStatusLabel.Text = "FAEN!";
-            toolStripStatusLabel.Text = "Stored row count: " + Properties.Settings.Default.rowcount.ToString();
-            // DETTE VISER INGENTING, FORDI DET IKKE BLIR LAGRET NOE I users NÅR SaveEntries() KJØRER!
-            if (Properties.Settings.Default.users != null)
-                toolStripStatusLabel.Text += "Stored u/p count: " + Properties.Settings.Default.users.Count.ToString();
+            // For troubleshooting:
+            //ShowRowsAndEntries();
 
             PopulateForm();
         }
@@ -33,6 +31,9 @@ namespace ChromeMullog {
          * Populate form with default values.
          */
         private void PopulateForm() {
+            // Clear the staus bar:
+            SetStatus("");
+
             // Load the url value from the application.settings file:
             websiteTextBox.Text = Properties.Settings.Default.lasturl;
 
@@ -46,14 +47,6 @@ namespace ChromeMullog {
                     y++;
                 }
             } catch (NullReferenceException) { }
-        }
-
-
-
-
-
-        private void killChromeProcesses() {
-
         }
 
         /**
@@ -98,19 +91,7 @@ namespace ChromeMullog {
                 Properties.Settings.Default.users = new System.Collections.Specialized.StringCollection();
             }
 
-            // For troubleshooting: Show a message box with the state of the users StringCollection (null or not):
-            /*String usersstatus = "";
-            if (Properties.Settings.Default.users == null)
-                usersstatus = "NULL";
-            if (Properties.Settings.Default.users != null)
-                usersstatus = "IKKE NULL";
-            MessageBox.Show(usersstatus);*/
-
             // Save the contents of the username/password rows (including blank entries):
-            // SER UT TIL AT IKKE Properties.Settings.Default.users ER INITIALISERT? MULIG DERFOR DET FEILER MED NullReferenceException HER:
-            // ER DET EN IDÉ Å GI Properties.Settings.Default.users EN DEFAULT VERDI? I SÅFALL, HVORDAN? PÅ SAMME MÅTE SOM ROWCOUNT?
-            // DET FUNGERER IKKE Å LAGRE NOE I users!
-            //for (int i = 0; i < userPanel.RowCount; i++) {
             for (int i = 0; i < Properties.Settings.Default.rowcount; i++) {
                 if (Properties.Settings.Default.users != null) {
                     Properties.Settings.Default.users.Add(userPanel.GetControlFromPosition(1, i).Text);
@@ -118,10 +99,115 @@ namespace ChromeMullog {
                 }
             }
 
-
+            // For troubleshooting: Show a message box with the state of the users StringCollection (null or not):
+            ShowRowsAndEntries();
+            //if (Properties.Settings.Default.users == null)
+            //    ShowMessageBox("NULL");
+            //if (Properties.Settings.Default.users != null)
+            //    ShowMessageBox("NOT NULL");
 
             // Save the settings file:
             Properties.Settings.Default.Save();
+        }
+
+        private void addRowButton_Click(object sender, EventArgs e) {
+            userPanel.RowCount++;
+
+            // Add a new row, up to 6 total:
+            if (userPanel.RowCount < 7) {
+                userPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+                userPanel.Controls.Add(new Label() { Text = "Login" });
+                userPanel.Controls.Add(new TextBox());
+                userPanel.Controls.Add(new TextBox());
+            }
+
+            // Update the row count in the settings:
+            Properties.Settings.Default.rowcount++;
+
+            // If the number of rows reaches 6, disable the button:
+            if (userPanel.RowCount > 5) {
+                addRowButton.Enabled = false;
+            }
+
+            // For troubleshooting: Show the saved usernames/passwords (from the last startup) and the new number of rows:
+            //ShowRowsAndEntries();
+        }
+
+        private void removeRowButton_Click(object sender, EventArgs e) {
+            userPanel.RowCount--;
+            // Remove the last row (the 3 last controls - Label, TextBox, TextBox):
+            userPanel.Controls.RemoveAt(Properties.Settings.Default.rowcount * 3 - 1);
+            userPanel.Controls.RemoveAt(Properties.Settings.Default.rowcount * 3 - 2);
+            userPanel.Controls.RemoveAt(Properties.Settings.Default.rowcount * 3 - 3);
+
+            // Update the row count in the settings:
+            Properties.Settings.Default.rowcount--;
+
+            // For troubleshooting: Show the saved usernames/passwords (from the last startup) and the new number of rows:
+            //ShowRowsAndEntries();
+        }
+
+        private void openChromeButton_Click(object sender, EventArgs e) {
+            website = websiteTextBox.Text.ToString();
+            instances = new ArrayList();
+
+            for (int i = 0; i < userPanel.RowCount * userPanel.RowCount - 1; i++) {
+                try {
+                    if (!string.IsNullOrWhiteSpace(userPanel.GetControlFromPosition(1, i).Text)) {
+                        instances.Add(new GCDriver(websiteTextBox.Text.ToString()));
+                        SiteLogin.AuthWindow.LoginUser(userPanel.GetControlFromPosition(1, i).Text.ToString(),
+                                                       userPanel.GetControlFromPosition(2, i).Text.ToString());
+                    }
+                }
+                catch (NullReferenceException) { }
+            }
+
+            SetStatus(instances.Count + " chromedriver.exe processes started.");
+        }
+
+        private void killButton_Click(object sender, EventArgs e) {
+            killChromeProcesses();
+
+            SetStatus("Open chromedriver.exe processes killed.");
+        }
+
+        private void killChromeProcesses() {
+            if (instances != null) {
+                foreach (GCDriver instance in instances) {
+                    instance.Close();
+                }
+            }
+        }
+
+        /**
+         * Show the stored row count and number of usernames/passwords in the Properties.Settings.Default file.
+         */
+        private void ShowRowsAndEntries () {
+            SetStatus("Stored row count: " + Properties.Settings.Default.rowcount.ToString());
+
+            if (Properties.Settings.Default.users != null)
+                AppendStatus(" Stored u/p count: " + Properties.Settings.Default.users.Count.ToString());
+            else
+                AppendStatus(" No stored u/p");
+        }
+
+        /**
+         *  Show a message on the status strip.
+         */
+        private void SetStatus (string text) {
+            toolStripStatusLabel.Text = text;
+        }
+
+        /**
+         *  Append a message to the status strip.
+         */
+        private void AppendStatus (string text) {
+            toolStripStatusLabel.Text += text;
+        }
+
+        /* Show a message box: */
+        private void ShowMessageBox (string message) {
+            MessageBox.Show(message);
         }
     }
 }

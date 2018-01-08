@@ -115,21 +115,21 @@
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel,
             this.toolStripStatusLabel1});
-            this.statusStrip.Location = new System.Drawing.Point(0, 270);
+            this.statusStrip.Location = new System.Drawing.Point(0, 268);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(406, 22);
+            this.statusStrip.Size = new System.Drawing.Size(406, 24);
             this.statusStrip.TabIndex = 19;
             this.statusStrip.Text = "statusStrip";
             // 
             // toolStripStatusLabel
             // 
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(0, 19);
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(0, 19);
             // 
             // MainForm
             // 
@@ -163,9 +163,9 @@
         private System.Windows.Forms.Button removeRowButton;
         private System.Windows.Forms.Button addRowButton;
         private System.Windows.Forms.TextBox websiteTextbox;
-        private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        public System.Windows.Forms.StatusStrip statusStrip;
     }
 }
 

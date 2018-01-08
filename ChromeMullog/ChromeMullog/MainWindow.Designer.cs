@@ -59,6 +59,7 @@
             this.openChromeButton.TabIndex = 2;
             this.openChromeButton.Text = "Open Chrome";
             this.openChromeButton.UseVisualStyleBackColor = true;
+            this.openChromeButton.Click += new System.EventHandler(this.openChromeButton_Click);
             // 
             // killButton
             // 
@@ -68,6 +69,7 @@
             this.killButton.TabIndex = 3;
             this.killButton.Text = "Kill Chrome";
             this.killButton.UseVisualStyleBackColor = true;
+            this.killButton.Click += new System.EventHandler(this.killButton_Click);
             // 
             // addRowButton
             // 
@@ -77,6 +79,7 @@
             this.addRowButton.TabIndex = 4;
             this.addRowButton.Text = "Add";
             this.addRowButton.UseVisualStyleBackColor = true;
+            this.addRowButton.Click += new System.EventHandler(this.addRowButton_Click);
             // 
             // removeRowButton
             // 
@@ -86,6 +89,7 @@
             this.removeRowButton.TabIndex = 5;
             this.removeRowButton.Text = "Remove";
             this.removeRowButton.UseVisualStyleBackColor = true;
+            this.removeRowButton.Click += new System.EventHandler(this.removeRowButton_Click);
             // 
             // userPanel
             // 
@@ -126,6 +130,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(406, 292);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.userPanel);

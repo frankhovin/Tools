@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromeMullog", "ChromeMullog\ChromeMullog.csproj", "{2ED4F999-B3A1-4122-9AB3-C8831CCD4E11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsOperations", "WindowsOperations\WindowsOperations.csproj", "{C0DE116A-72E5-48DC-9A3D-B90A7D441B2A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2ED4F999-B3A1-4122-9AB3-C8831CCD4E11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ED4F999-B3A1-4122-9AB3-C8831CCD4E11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ED4F999-B3A1-4122-9AB3-C8831CCD4E11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ED4F999-B3A1-4122-9AB3-C8831CCD4E11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0DE116A-72E5-48DC-9A3D-B90A7D441B2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0DE116A-72E5-48DC-9A3D-B90A7D441B2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0DE116A-72E5-48DC-9A3D-B90A7D441B2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0DE116A-72E5-48DC-9A3D-B90A7D441B2A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
