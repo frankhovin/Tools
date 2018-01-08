@@ -94,6 +94,7 @@
             // userPanel
             // 
             this.userPanel.AutoSize = true;
+            this.userPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.userPanel.ColumnCount = 3;
             this.userPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.userPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -105,7 +106,7 @@
             this.userPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.userPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.userPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.userPanel.Size = new System.Drawing.Size(392, 103);
+            this.userPanel.Size = new System.Drawing.Size(60, 0);
             this.userPanel.TabIndex = 6;
             // 
             // statusStrip
@@ -131,6 +132,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(406, 292);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.userPanel);
@@ -162,4 +164,3 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
     }
 }
-

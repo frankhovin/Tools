@@ -57,8 +57,9 @@ namespace ChromeMullog {
             if (PreClosingConfirmation() == System.Windows.Forms.DialogResult.Yes) {
                 killChromeProcesses();
                 SaveEntries();
-                Dispose(true);
-                Application.Exit();
+                //Dispose(true);
+                Environment.Exit(0);
+                //Application.Exit();
             }
             else {
                 e.Cancel = true;
