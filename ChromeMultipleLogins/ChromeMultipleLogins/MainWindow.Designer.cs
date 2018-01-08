@@ -69,8 +69,8 @@
             this.userPanel.AutoSize = true;
             this.userPanel.ColumnCount = 3;
             this.userPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.userPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.userPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.userPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
+            this.userPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
             this.userPanel.Location = new System.Drawing.Point(9, 153);
             this.userPanel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 35);
             this.userPanel.Name = "userPanel";

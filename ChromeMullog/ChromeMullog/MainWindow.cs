@@ -16,8 +16,8 @@ namespace ChromeMullog {
                 Properties.Settings.Default.rowcount = 3;
             }
             for (int i = 0; i < Properties.Settings.Default.rowcount; i++) {
-                userPanel.Controls.Add(new Label() { Text = "Login" });
-                userPanel.Controls.Add(new TextBox());
+                userPanel.Controls.Add(new Label() { Text = "Login", TextAlign = System.Drawing.ContentAlignment.MiddleLeft });
+                userPanel.Controls.Add(new TextBox() { Anchor = (AnchorStyles.Left | AnchorStyles.Right)});
                 userPanel.Controls.Add(new TextBox());
             }
 
