@@ -111,6 +111,12 @@ namespace ChromeMullog {
             Properties.Settings.Default.Save();
         }
 
+        private void aboutToolStripMenuItem1_Click(object sender, EventArgs e) {
+            Form aboutform;
+            aboutform = new AboutForm();
+            aboutform.ShowDialog(this);
+        }
+
         private void addRowButton_Click(object sender, EventArgs e) {
             userPanel.RowCount++;
 
