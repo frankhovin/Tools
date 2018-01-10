@@ -3,11 +3,15 @@ using System.Windows.Forms;
 using System.Collections;
 using ChromeMullog.Selenium;
 using WindowsOperations.Authentication;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Threading;
 
 namespace ChromeMullog {
     public partial class MainForm : Form {
         string      website;
         ArrayList   instances;
+        private     BackgroundWorker wrk;
 
         public MainForm() {
             InitializeComponent();
@@ -17,7 +21,7 @@ namespace ChromeMullog {
             }
             for (int i = 0; i < Properties.Settings.Default.rowcount; i++) {
                 userPanel.Controls.Add(new Label() { Text = "Login", TextAlign = System.Drawing.ContentAlignment.MiddleLeft });
-                userPanel.Controls.Add(new TextBox() { Anchor = (AnchorStyles.Left | AnchorStyles.Right)});
+                userPanel.Controls.Add(new TextBox() { Anchor = (AnchorStyles.Left | AnchorStyles.Right) });
                 userPanel.Controls.Add(new TextBox());
             }
 
@@ -31,9 +35,6 @@ namespace ChromeMullog {
          * Populate form with default values.
          */
         private void PopulateForm() {
-            // Clear the staus bar:
-            SetStatus("");
-
             // Load the url value from the application.settings file:
             websiteTextBox.Text = Properties.Settings.Default.lasturl;
 
@@ -47,6 +48,9 @@ namespace ChromeMullog {
                     y++;
                 }
             } catch (NullReferenceException) { }
+
+            // Set the staus:
+            SetStatus("Ready");
         }
 
         /**
@@ -55,11 +59,14 @@ namespace ChromeMullog {
         protected override void OnFormClosing(FormClosingEventArgs e) {
             base.OnFormClosing(e);
             if (PreClosingConfirmation() == System.Windows.Forms.DialogResult.Yes) {
-                killChromeProcesses();
+                try {
+                    if (instances.Count > 0)
+                        killChromeProcesses();
+                } catch (NullReferenceException) { }
                 SaveEntries();
-                //Dispose(true);
-                Environment.Exit(0);
-                //Application.Exit();
+                Dispose(true);
+                //Environment.Exit(0);
+                Application.ExitThread();
             }
             else {
                 e.Cancel = true;
@@ -84,8 +91,7 @@ namespace ChromeMullog {
             Properties.Settings.Default.lasturl = websiteTextBox.Text;
 
             // Clear the existing collection of usernames/passwords:
-            // If the users StringCollection exists, just clear it of all contents.
-            // If it doesn't exist, create it.
+            // If the users StringCollection exists, just clear it of all contents. If it doesn't exist, create it.
             if (Properties.Settings.Default.users != null) {
                 Properties.Settings.Default.users.Clear();
             } else {
@@ -155,6 +161,39 @@ namespace ChromeMullog {
         }
 
         private void openChromeButton_Click(object sender, EventArgs e) {
+            SetStatus("Spawning ChromeDriver...");
+
+            this.wrk = new BackgroundWorker();
+            this.wrk.DoWork += new DoWorkEventHandler(/*wrk_DoWork*/SpawnChromeDriver);
+            this.wrk.ProgressChanged += new ProgressChangedEventHandler(SpawnChromeDriver_ProgressChanged);
+            this.wrk.RunWorkerCompleted += new RunWorkerCompletedEventHandler(SpawnChromeDriver_Completed);
+            this.wrk.WorkerReportsProgress = true;
+            this.wrk.RunWorkerAsync();
+
+        }
+
+        /**
+         *  Method to detect when the progress of the thread spawning the ChromeDriver instances is changed.
+         */
+        private void SpawnChromeDriver_ProgressChanged(object sender, ProgressChangedEventArgs e) {
+            // NOT IN USE
+        }
+
+        /**
+         *  Method to detect when the thread spawning the ChromeDriver instances is completed.
+         *  Updates the status bar with the number of instances created.
+         */
+        private void SpawnChromeDriver_Completed (object sender, RunWorkerCompletedEventArgs e) {
+            SetStatus(e.Result.ToString() + " ChromeDriver instances created");
+        }
+
+        /**
+         *  Start the ChromeDriver processes which spawn Chrome, navigates to the URL and logs in.
+         *
+         *  Returns an int with the number of ChromeDriver processes started.
+         */
+        private void SpawnChromeDriver(object sender, DoWorkEventArgs e) {
+            BackgroundWorker work = (BackgroundWorker)sender;
             website = websiteTextBox.Text.ToString();
             instances = new ArrayList();
 
@@ -169,13 +208,12 @@ namespace ChromeMullog {
                 catch (NullReferenceException) { }
             }
 
-            SetStatus(instances.Count + " chromedriver.exe processes started.");
+            e.Result = instances.Count;
         }
 
         private void killButton_Click(object sender, EventArgs e) {
             killChromeProcesses();
-
-            SetStatus("Open chromedriver.exe processes killed.");
+            SetStatus(instances.Count + " open ChromeDriver instances killed.");
         }
 
         private void killChromeProcesses() {

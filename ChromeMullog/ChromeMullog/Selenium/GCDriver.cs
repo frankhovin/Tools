@@ -3,6 +3,7 @@
  */
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using System;
 
 namespace ChromeMullog.Selenium {
     public class GCDriver {
@@ -10,7 +11,19 @@ namespace ChromeMullog.Selenium {
         public GCDriver(string url) {
             var driverService = ChromeDriverService.CreateDefaultService();
             driverService.HideCommandPromptWindow = true;
-            driver = new ChromeDriver(driverService, new ChromeOptions());
+
+            try {
+                driver = new ChromeDriver(driverService, new ChromeOptions());
+            }
+            //catch (NullReferenceException) { }
+            //catch (System.Net.Sockets.SocketException) { }
+            catch (Exception ex) {
+                if (ex is NullReferenceException || ex is System.Net.Sockets.SocketException) {
+                    return;
+                }
+                throw;
+            }
+
             driver.Navigate().GoToUrl(url);
         }
 
