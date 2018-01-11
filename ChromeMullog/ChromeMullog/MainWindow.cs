@@ -197,7 +197,10 @@ namespace ChromeMullog {
             website = websiteTextBox.Text.ToString();
             instances = new ArrayList();
 
-            for (int i = 0; i < userPanel.RowCount * userPanel.RowCount - 1; i++) {
+            //for (int i = 0; i < userPanel.RowCount * userPanel.RowCount - 1; i++) {
+            // REPLACING THE ABOVEWITH THE ONE BELOW REMOVES THE NullReferenceException WHEN SPAWNING THE ChromeDriver(s).
+            // I HAVE NO IDEA WHY I CHECKED AGAINST "userPanel.RowCount * userPanel.RowCount - 1" INSTEAD OF JUST "userPanel.RowCount - 1"
+            for (int i = 0; i < userPanel.RowCount - 1; i++) {
                 try {
                     if (!string.IsNullOrWhiteSpace(userPanel.GetControlFromPosition(1, i).Text)) {
                         instances.Add(new GCDriver(websiteTextBox.Text.ToString()));

@@ -18,7 +18,7 @@ namespace ChromeMullog.Selenium {
             //catch (NullReferenceException) { }
             //catch (System.Net.Sockets.SocketException) { }
             catch (Exception ex) {
-                if (ex is NullReferenceException || ex is System.Net.Sockets.SocketException) {
+                if (ex is NullReferenceException || ex is System.Net.Sockets.SocketException || ex is OpenQA.Selenium.WebDriverException) {
                     return;
                 }
                 throw;
@@ -38,7 +38,9 @@ namespace ChromeMullog.Selenium {
          *  Close/quit the chromedriver.
          */
         public void Close() {
-            driver.Quit();
+            try {
+                driver.Quit();
+            } catch (OpenQA.Selenium.WebDriverException) { }
         }
     }
 }
