@@ -62,7 +62,7 @@ namespace ChromeMullog {
                 try {
                     if (instances.Count > 0)
                         killChromeProcesses();
-                } catch (NullReferenceException) { }
+                } catch (NullReferenceException) { } // DOESN'T SEEM TO HELP ON THE SLOW QUIT AFTER KILLING ChromeDriver manually.
                 SaveEntries();
                 Dispose(true);
                 //Environment.Exit(0);
