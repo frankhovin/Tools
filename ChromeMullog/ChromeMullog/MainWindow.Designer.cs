@@ -1,4 +1,7 @@
-﻿namespace ChromeMullog {
+﻿/**
+ * Author: Frank H.
+ */
+namespace ChromeMullog {
     partial class MainForm {
         /// <summary>
         /// Required designer variable.

@@ -1,11 +1,12 @@
-﻿using System;
+﻿/**
+ * Author: Frank H.
+ */
+using System;
 using System.Windows.Forms;
 using System.Collections;
 using ChromeMullog.Selenium;
 using WindowsOperations.Authentication;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Threading;
 
 namespace ChromeMullog {
     public partial class MainForm : Form {
@@ -62,10 +63,9 @@ namespace ChromeMullog {
                 try {
                     if (instances.Count > 0)
                         killChromeProcesses();
-                } catch (NullReferenceException) { } // DOESN'T SEEM TO HELP ON THE SLOW QUIT AFTER KILLING ChromeDriver manually.
+                } catch (NullReferenceException) { }
                 SaveEntries();
                 Dispose(true);
-                //Environment.Exit(0);
                 Application.ExitThread();
             }
             else {
@@ -197,9 +197,6 @@ namespace ChromeMullog {
             website = websiteTextBox.Text.ToString();
             instances = new ArrayList();
 
-            //for (int i = 0; i < userPanel.RowCount * userPanel.RowCount - 1; i++) {
-            // REPLACING THE ABOVEWITH THE ONE BELOW REMOVES THE NullReferenceException WHEN SPAWNING THE ChromeDriver(s).
-            // I HAVE NO IDEA WHY I CHECKED AGAINST "userPanel.RowCount * userPanel.RowCount - 1" INSTEAD OF JUST "userPanel.RowCount - 1"
             for (int i = 0; i < userPanel.RowCount - 1; i++) {
                 try {
                     if (!string.IsNullOrWhiteSpace(userPanel.GetControlFromPosition(1, i).Text)) {
