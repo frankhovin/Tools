@@ -60,6 +60,7 @@ namespace ChromeMullog {
         protected override void OnFormClosing(FormClosingEventArgs e) {
             base.OnFormClosing(e);
             if (PreClosingConfirmation() == System.Windows.Forms.DialogResult.Yes) {
+                SetStatus("Closing and tidying up...");
                 try {
                     if (instances.Count > 0)
                         killChromeProcesses();
