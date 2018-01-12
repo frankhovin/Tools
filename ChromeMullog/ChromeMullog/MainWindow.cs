@@ -130,8 +130,10 @@ namespace ChromeMullog {
             // Add a new row, up to 6 total:
             if (userPanel.RowCount < 7) {
                 userPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-                userPanel.Controls.Add(new Label() { Text = "Login" });
-                userPanel.Controls.Add(new TextBox());
+                //userPanel.Controls.Add(new Label() { Text = "Login" });
+                userPanel.Controls.Add(new Label() { Text = "Login", TextAlign = System.Drawing.ContentAlignment.MiddleLeft });
+                //userPanel.Controls.Add(new TextBox());
+                userPanel.Controls.Add(new TextBox() { Anchor = (AnchorStyles.Left | AnchorStyles.Right) });
                 userPanel.Controls.Add(new TextBox());
             }
 
