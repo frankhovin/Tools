@@ -7,30 +7,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ChromeMultipleInstances.Selenium;
 
 namespace ChromeMultipleInstances {
     public partial class MainForm : Form {
+        MetroFramework.Controls.MetroTextBox addr1Textbox;
+        MetroFramework.Controls.MetroTextBox usernameTextbox1,
+                                             usernameTextbox2,
+                                             usernameTextbox3,
+                                             passwordTextbox1,
+                                             passwordTextbox2,
+                                             passwordTextbox3;
 
+        MetroFramework.Controls.MetroTextBox[] logins;
+
+        private void populateLogins () {
+            logins[0] = usernameTextbox1;
+        }
 
 
         public MainForm() {
             InitializeComponent();
 
+            if (Properties.Settings.Default.rowcount == 0) {
+                Properties.Settings.Default.rowcount = 3;
+            }
 
-            //this.funcSelector = new MetroFramework.Controls.MetroComboBox();
-            //this.ssMultipleLoginsPanel = new MetroFramework.Controls.MetroPanel();
 
 
         }
 
         private void funcSelector_SelectedIndexChanged(object sender, EventArgs e) {
             if (funcSelector.Text.Equals("One website, multiple logins")) {
-                GetSSMLPanel();
+                ShowSSMLPanel();
             }
         }
 
-
-        private void GetSSMLPanel() {
+        private void ShowSSMLPanel() {
             //
             // Address label
             //
@@ -44,7 +57,7 @@ namespace ChromeMultipleInstances {
             //
             // Address textfield
             //
-            MetroFramework.Controls.MetroTextBox addr1Textbox = new MetroFramework.Controls.MetroTextBox();
+            addr1Textbox = new MetroFramework.Controls.MetroTextBox();
             ssMultipleLoginsPanel.Controls.Add(addr1Textbox);
             addr1Textbox.Location = new System.Drawing.Point(70, 10);
             addr1Textbox.Size = new System.Drawing.Size(290, 23);
@@ -72,7 +85,7 @@ namespace ChromeMultipleInstances {
             //
             // usernameTextbox1
             //
-            MetroFramework.Controls.MetroTextBox usernameTextbox1 = new MetroFramework.Controls.MetroTextBox();
+            usernameTextbox1 = new MetroFramework.Controls.MetroTextBox();
             ssMultipleLoginsPanel.Controls.Add(usernameTextbox1);
             usernameTextbox1.Location = new System.Drawing.Point(70, 65);
             usernameTextbox1.Size = new System.Drawing.Size(140, 23);
@@ -80,7 +93,7 @@ namespace ChromeMultipleInstances {
             //
             // passwordTextbox1
             //
-            MetroFramework.Controls.MetroTextBox passwordTextbox1 = new MetroFramework.Controls.MetroTextBox();
+            passwordTextbox1 = new MetroFramework.Controls.MetroTextBox();
             ssMultipleLoginsPanel.Controls.Add(passwordTextbox1);
             passwordTextbox1.Location = new System.Drawing.Point(220, 65);
             passwordTextbox1.Size = new System.Drawing.Size(140, 22);
@@ -88,7 +101,7 @@ namespace ChromeMultipleInstances {
             //
             // usernameTextbox2
             //
-            MetroFramework.Controls.MetroTextBox usernameTextbox2 = new MetroFramework.Controls.MetroTextBox();
+            usernameTextbox2 = new MetroFramework.Controls.MetroTextBox();
             ssMultipleLoginsPanel.Controls.Add(usernameTextbox2);
             usernameTextbox2.Location = new System.Drawing.Point(70, 92);
             usernameTextbox2.Size = new System.Drawing.Size(140, 23);
@@ -96,16 +109,15 @@ namespace ChromeMultipleInstances {
             //
             // passwordTextbox2
             //
-            MetroFramework.Controls.MetroTextBox passwordTextbox2 = new MetroFramework.Controls.MetroTextBox();
+            passwordTextbox2 = new MetroFramework.Controls.MetroTextBox();
             ssMultipleLoginsPanel.Controls.Add(passwordTextbox2);
             passwordTextbox2.Location = new System.Drawing.Point(220, 92);
             passwordTextbox2.Size = new System.Drawing.Size(140, 22);
             usernameTextbox2.TabIndex = 8;
-
             //
             // usernameTextbox3
             //
-            MetroFramework.Controls.MetroTextBox usernameTextbox3 = new MetroFramework.Controls.MetroTextBox();
+            usernameTextbox3 = new MetroFramework.Controls.MetroTextBox();
             ssMultipleLoginsPanel.Controls.Add(usernameTextbox3);
             usernameTextbox3.Location = new System.Drawing.Point(70, 119);
             usernameTextbox3.Size = new System.Drawing.Size(140, 23);
@@ -113,13 +125,19 @@ namespace ChromeMultipleInstances {
             //
             // passwordTextbox3
             //
-            MetroFramework.Controls.MetroTextBox passwordTextbox3 = new MetroFramework.Controls.MetroTextBox();
+            passwordTextbox3 = new MetroFramework.Controls.MetroTextBox();
             ssMultipleLoginsPanel.Controls.Add(passwordTextbox3);
             passwordTextbox3.Location = new System.Drawing.Point(220, 119);
             passwordTextbox3.Size = new System.Drawing.Size(140, 22);
             usernameTextbox3.TabIndex = 10;
         }
 
+        private void launchChromeButton_Click(object sender, EventArgs e) {
+            string adr = addr1Textbox.Text.ToString();
+        }
 
+        private void killChromeButton_Click(object sender, EventArgs e) {
+
+        }
     }
 }
