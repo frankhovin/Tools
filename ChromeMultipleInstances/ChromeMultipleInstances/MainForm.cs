@@ -61,14 +61,6 @@ namespace ChromeMultipleInstances {
             usernameLabel.TabIndex = 3;
             usernameLabel.Text = "Username";
             //
-            // usernameTextbox
-            //
-            MetroFramework.Controls.MetroTextBox usernameTextbox = new MetroFramework.Controls.MetroTextBox();
-            ssMultipleLoginsPanel.Controls.Add(usernameTextbox);
-            usernameTextbox.Location = new System.Drawing.Point(70, 65);
-            usernameTextbox.Size = new System.Drawing.Size(140, 23);
-            usernameTextbox.TabIndex = 3;
-            //
             // passwordLabel
             //
             MetroFramework.Controls.MetroLabel passwordLabel = new MetroFramework.Controls.MetroLabel();
@@ -78,15 +70,54 @@ namespace ChromeMultipleInstances {
             passwordLabel.TabIndex = 4;
             passwordLabel.Text = "Password";
             //
-            // passwordTextbox
+            // usernameTextbox1
             //
-            MetroFramework.Controls.MetroTextBox passwordTextbox = new MetroFramework.Controls.MetroTextBox();
-            ssMultipleLoginsPanel.Controls.Add(passwordTextbox);
-            passwordTextbox.Location = new System.Drawing.Point(220, 65);
-            passwordTextbox.Size = new System.Drawing.Size(140, 23);
-            passwordTextbox.TabIndex = 5;
+            MetroFramework.Controls.MetroTextBox usernameTextbox1 = new MetroFramework.Controls.MetroTextBox();
+            ssMultipleLoginsPanel.Controls.Add(usernameTextbox1);
+            usernameTextbox1.Location = new System.Drawing.Point(70, 65);
+            usernameTextbox1.Size = new System.Drawing.Size(140, 23);
+            usernameTextbox1.TabIndex = 5;
+            //
+            // passwordTextbox1
+            //
+            MetroFramework.Controls.MetroTextBox passwordTextbox1 = new MetroFramework.Controls.MetroTextBox();
+            ssMultipleLoginsPanel.Controls.Add(passwordTextbox1);
+            passwordTextbox1.Location = new System.Drawing.Point(220, 65);
+            passwordTextbox1.Size = new System.Drawing.Size(140, 22);
+            passwordTextbox1.TabIndex = 6;
+            //
+            // usernameTextbox2
+            //
+            MetroFramework.Controls.MetroTextBox usernameTextbox2 = new MetroFramework.Controls.MetroTextBox();
+            ssMultipleLoginsPanel.Controls.Add(usernameTextbox2);
+            usernameTextbox2.Location = new System.Drawing.Point(70, 92);
+            usernameTextbox2.Size = new System.Drawing.Size(140, 23);
+            usernameTextbox2.TabIndex = 7;
+            //
+            // passwordTextbox2
+            //
+            MetroFramework.Controls.MetroTextBox passwordTextbox2 = new MetroFramework.Controls.MetroTextBox();
+            ssMultipleLoginsPanel.Controls.Add(passwordTextbox2);
+            passwordTextbox2.Location = new System.Drawing.Point(220, 92);
+            passwordTextbox2.Size = new System.Drawing.Size(140, 22);
+            usernameTextbox2.TabIndex = 8;
 
-
+            //
+            // usernameTextbox3
+            //
+            MetroFramework.Controls.MetroTextBox usernameTextbox3 = new MetroFramework.Controls.MetroTextBox();
+            ssMultipleLoginsPanel.Controls.Add(usernameTextbox3);
+            usernameTextbox3.Location = new System.Drawing.Point(70, 119);
+            usernameTextbox3.Size = new System.Drawing.Size(140, 23);
+            usernameTextbox3.TabIndex = 9;
+            //
+            // passwordTextbox3
+            //
+            MetroFramework.Controls.MetroTextBox passwordTextbox3 = new MetroFramework.Controls.MetroTextBox();
+            ssMultipleLoginsPanel.Controls.Add(passwordTextbox3);
+            passwordTextbox3.Location = new System.Drawing.Point(220, 119);
+            passwordTextbox3.Size = new System.Drawing.Size(140, 22);
+            usernameTextbox3.TabIndex = 10;
         }
 
 
