@@ -26,10 +26,12 @@
             this.components = new System.ComponentModel.Container();
             this.funcSelector = new MetroFramework.Controls.MetroComboBox();
             this.ssMultipleLoginsPanel = new MetroFramework.Controls.MetroPanel();
+            this.loginsTable = new System.Windows.Forms.TableLayoutPanel();
             this.actionButtonsPanel = new MetroFramework.Controls.MetroPanel();
             this.killChromeButton = new MetroFramework.Controls.MetroButton();
             this.launchChromeButton = new MetroFramework.Controls.MetroButton();
             this.metroStyleExtender1 = new MetroFramework.Components.MetroStyleExtender(this.components);
+            this.ssMultipleLoginsPanel.SuspendLayout();
             this.actionButtonsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,6 +50,7 @@
             // ssMultipleLoginsPanel
             // 
             this.ssMultipleLoginsPanel.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
+            this.ssMultipleLoginsPanel.Controls.Add(this.loginsTable);
             this.ssMultipleLoginsPanel.HorizontalScrollbarBarColor = true;
             this.ssMultipleLoginsPanel.HorizontalScrollbarHighlightOnWheel = false;
             this.ssMultipleLoginsPanel.HorizontalScrollbarSize = 10;
@@ -58,6 +61,25 @@
             this.ssMultipleLoginsPanel.VerticalScrollbarBarColor = true;
             this.ssMultipleLoginsPanel.VerticalScrollbarHighlightOnWheel = false;
             this.ssMultipleLoginsPanel.VerticalScrollbarSize = 10;
+            // 
+            // loginsTable
+            // 
+            this.loginsTable.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.loginsTable.ColumnCount = 3;
+            this.loginsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
+            this.loginsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 220F));
+            this.loginsTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 58F));
+            this.loginsTable.Location = new System.Drawing.Point(1, 50);
+            this.loginsTable.Name = "loginsTable";
+            this.loginsTable.RowCount = 5;
+            this.loginsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.loginsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.loginsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.loginsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.loginsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.loginsTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.loginsTable.Size = new System.Drawing.Size(488, 185);
+            this.loginsTable.TabIndex = 2;
             // 
             // actionButtonsPanel
             // 
@@ -103,6 +125,7 @@
             this.Controls.Add(this.funcSelector);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
+            this.ssMultipleLoginsPanel.ResumeLayout(false);
             this.actionButtonsPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -116,6 +139,7 @@
         private MetroFramework.Controls.MetroButton launchChromeButton;
         private MetroFramework.Controls.MetroButton killChromeButton;
         private MetroFramework.Components.MetroStyleExtender metroStyleExtender1;
+        private System.Windows.Forms.TableLayoutPanel loginsTable;
     }
 }
 
